@@ -19,7 +19,7 @@ npm i taro3-vue3-iconfont -D
 请直接复制[iconfont](http://iconfont.cn)官网提供的项目链接。请务必看清是`.js`后缀而不是.css后缀。如果你现在还没有创建iconfont的仓库，那么可以填入这个链接去测试：`//at.alicdn.com/t/font_3348788_knd7fx1tclm.js`
 
 <br />
-![](https://github.com/dongj0316/taro3-vue3-iconfont/blob/master/images/c.png?raw=true)
+![](https://github.com/dongj0316/taro3-vue3-iconfont/blob/main/images/c.png?raw=true)
 
 # Step3
 配置`package.json`
@@ -85,9 +85,9 @@ App.use(Iconfont);
 配合`volar`，组件的类型提示
 
 <br />
-![](https://github.com/dongj0316/taro3-vue3-iconfont/blob/master/images/a.jpg?raw=true)
+![](https://github.com/dongj0316/taro3-vue3-iconfont/blob/main/images/a.jpg?raw=true)
 <br />
-![](https://github.com/dongj0316/taro3-vue3-iconfont/blob/master/images/b.jpg?raw=true)
+![](https://github.com/dongj0316/taro3-vue3-iconfont/blob/main/images/b.jpg?raw=true)
 
 ## 参考项目：
 
