@@ -1,0 +1,56 @@
+{
+  "name": "example-vue3",
+  "version": "1.0.0",
+  "private": true,
+  "description": "example-vue3",
+  "templateInfo": {
+    "name": "vue3-NutUI",
+    "typescript": false,
+    "css": "sass"
+  },
+  "scripts": {
+    "debug": "chmod u+x /usr/local/bin/taro3-vue3-iconfont && taro3-vue3-iconfont",
+    "dev:weapp": "npm run build:weapp -- --watch",
+    "dev:h5": "npm run build:h5 -- --watch",
+    "build:weapp": "taro build --type weapp",
+    "build:h5": "taro build --type h5"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "@tarojs/runtime": "3.4.3",
+    "@tarojs/taro": "3.4.3",
+    "@tarojs/components": "3.4.3",
+    "@tarojs/plugin-html": "3.4.3",
+    "@tarojs/plugin-framework-vue3": "3.4.3",
+    "vue": "^3.0.0",
+    "@nutui/nutui-taro": "^3.1.8"
+  },
+  "devDependencies": {
+    "@types/webpack-env": "^1.13.6",
+    "@tarojs/mini-runner": "3.4.3",
+    "@tarojs/webpack-runner": "3.4.3",
+    "@babel/core": "^7.8.0",
+    "@tarojs/cli": "3.4.3",
+    "babel-preset-taro": "3.4.3",
+    "babel-plugin-import": "^1.13.3",
+    "@vue/compiler-sfc": "^3.0.0",
+    "vue-loader": "^16.0.0-beta.8",
+    "eslint-plugin-vue": "^7.0.0",
+    "eslint-config-taro": "3.4.3",
+    "eslint": "^6.8.0",
+    "stylelint": "9.3.0"
+  },
+  "taro3-vue3-iconfont": [
+    {
+      "url": "//at.alicdn.com/t/font_3348788_knd7fx1tclm.js",
+      "output": "./src/iconfont"
+    }
+  ]
+}
