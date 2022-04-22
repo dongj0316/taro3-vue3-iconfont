@@ -79,7 +79,7 @@ App.use(Iconfont);
 
 ```html
 <template>
-  <Iconfont name="iconfont-iconfont5" size="24" color="red" />
+  <Iconfont name="iconfont-iconfont5" size="24" fill="red" />
 </template>
 ```
 
