@@ -3,8 +3,6 @@ import path from 'path';
 import glob from 'glob';
 import axios from 'axios';
 import { PackageJson, IconfontConfig } from './types';
-import { encode } from 'js-base64';
-import { SymbolMap } from './types';
 
 export const svgSymbolExtraReg = /<symbol[\s\S]*?<\/symbol>/g;
 export const svgSymbolIdExtraReg = /\sid="([\w-]+)"/;
@@ -24,7 +22,7 @@ export const getUserConfig = context => {
     conf => {
       const output = path.resolve(context, conf.output);
       const symbolSourcePath = path.resolve(output, 'assets/source.js');
-      const base64Path = path.resolve(output, 'assets/base64.json');
+      const base64Path = path.resolve(output, 'assets/base64.js');
       fs.ensureFileSync(symbolSourcePath);
       fs.ensureFileSync(base64Path);
       return {
@@ -56,18 +54,25 @@ export const fetchSymbolSource = async (url: string) => {
   return data;
 };
 
-export const genBase64Url = (symbolMap: SymbolMap) => {
-  const str = `<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-  <svg viewBox="${symbolMap.viewBox}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">${symbolMap.content}</svg>`;
-  return `data:image/svg+xml;base64,${encode(str)}`;
-};
+export const genBase64Js = (config: IconfontConfig) => {
+  let str = '';
+  const keys = Object.keys(config.symbolMap);
+  const len = keys.length;
+  keys.forEach((id, index) => {
+    const isFirst = index === 0;
+    const isLast = index === len - 1;
+    const pre = isFirst ? '' : '  ';
+    const lst = isLast ? '' : '\n';
+    str += `${pre}'${id}': genBase64UrlFn('${config.symbolMap[id].viewBox}', '${config.symbolMap[id].content}'),${lst}`;
+  });
 
-export const genBase64Json = (config: IconfontConfig) => {
-  const base64Map = Object.keys(config.symbolMap).reduce((res, id) => {
-    res[id] = config.symbolMap[id].base64;
-    return res;
-  }, {});
-  fs.writeFileSync(config.base64Path, JSON.stringify(base64Map), 'utf8');
+  const templatePath = path.resolve(__dirname, './template/');
+  let base64Tpl = fs.readFileSync(
+    path.resolve(templatePath, 'base64.js'),
+    'utf8',
+  );
+  base64Tpl = base64Tpl.replace('IconfontName: () => {},', str);
+  fs.writeFileSync(config.base64Path, base64Tpl, 'utf8');
 };
 
 export const genSourceJs = (config: IconfontConfig) => {
@@ -85,11 +90,17 @@ export const genComponents = (config: IconfontConfig) => {
     .join(' | ');
   const templatePath = path.resolve(__dirname, './template/');
 
-  fs.copySync(templatePath, config.output);
+  fs.copySync(templatePath, config.output, {
+    filter: src => !src.endsWith('base64.js'),
+  });
 
   glob(`${config.output}/*.{vue,css,ts}`, function (err, matches) {
     if (!err) {
       matches.forEach(filePath => {
+        if (filePath.endsWith('base64.js')) {
+          return;
+        }
+
         let content = fs.readFileSync(filePath, 'utf8');
 
         content = content.replace(/\bComponentPrefix\b/g, config.prefix);

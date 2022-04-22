@@ -5,8 +5,7 @@ import {
   getUserConfig,
   genSourceJs,
   genComponents,
-  genBase64Url,
-  genBase64Json,
+  genBase64Js,
   svgSymbolExtraReg,
   svgSymbolIdExtraReg,
   svgSymbolContentExtraReg,
@@ -80,7 +79,11 @@ if (!userConfig || !userConfig.length) {
 
         const id = matchId[1];
         const viewBox = matchViewBox[1];
-        const content = matchContent[1];
+        let content = matchContent[1];
+        // 单色icon移除fill
+        if (content.indexOf('</symbol>') === content.lastIndexOf('</symbol>')) {
+          content = content.replace(/\sfill="[^"]+"/, '');
+        }
         const clearedSource = source.replace(svgSymbolIdExtraReg, '');
 
         const item = {
@@ -93,10 +96,7 @@ if (!userConfig || !userConfig.length) {
 
         config.prefix = id.split('-')[0];
 
-        return {
-          ...item,
-          base64: genBase64Url(item),
-        };
+        return item;
       })
       .reduce((res, item) => {
         res[item.id] = item;
@@ -106,7 +106,7 @@ if (!userConfig || !userConfig.length) {
     config.symbolMap = symbolMap;
 
     genSourceJs(config);
-    genBase64Json(config);
+    genBase64Js(config);
     genComponents(config);
   });
 })();

@@ -75,10 +75,11 @@ App.use(Iconfont);
 | --- | --- | --- | --- |
 | `name` | icon名称 | `string` | - |
 | `size` | icon尺寸，不要单位，基于`Taro.config.designWidth`计算，默认为`750`设计稿的`32px` | `string/number` | `32` |
+| `fill` | 颜色值 | `string` | `currentColor` |
 
 ```html
 <template>
-  <Iconfont name="iconfont-iconfont5" />
+  <Iconfont name="iconfont-iconfont5" size="24" color="red" />
 </template>
 ```
 

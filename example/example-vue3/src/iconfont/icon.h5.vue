@@ -1,7 +1,12 @@
 <!-- !自动生成文件(by taro3-vue3-iconfont)，别动！ -->
 <template>
   <view class="iconfont" :class="name" :style="sizeStyle">
-    <svg class="iconfont-inner" aria-hidden="true" :style="sizeStyle">
+    <svg
+      class="iconfont-inner"
+      aria-hidden="true"
+      :fill="fill"
+      :style="sizeStyle"
+    >
       <use :xlink:href="`#${name}`"></use>
     </svg>
   </view>
@@ -19,6 +24,10 @@ export default defineComponent({
   props: {
     name: String,
     size: [Number, String],
+    fill: {
+      type: String,
+      default: 'currentColor',
+    },
   },
   setup(props) {
     const sizeStyle = computed(() => {

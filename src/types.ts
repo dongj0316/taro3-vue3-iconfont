@@ -4,7 +4,7 @@ export interface SymbolMap {
   content: string;
   source: string;
   clearedSource: string;
-  base64?: string;
+  base64?: (fill: string) => string;
 }
 
 export interface IconfontConfig {

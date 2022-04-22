@@ -1,7 +1,7 @@
 <template>
   <view class="index">
     <Iconfont name="iconfont-iconfont5" size="32" />
-    <Iconfont name="iconfont-iconfontxingxing" size="64" />
+    <Iconfont name="iconfont-iconfontxingxing" size="64" fill="red" />
     <Iconfont name="iconfont-iconfontshouji" />
     <Iconfont name="iconfont-iconfontphone" />
   </view>

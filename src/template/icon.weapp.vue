@@ -3,7 +3,7 @@
   <view class="ComponentPrefix" :class="name" :style="sizeStyle">
     <image
       class="ComponentPrefix-image"
-      :src="base64Json[name]"
+      :src="base64Map[name](fill)"
       :style="sizeStyle"
     ></image>
   </view>
@@ -14,13 +14,17 @@
 import './icon.css';
 import Taro from '@tarojs/taro';
 import { defineComponent, computed } from 'vue';
-import base64Json from './assets/base64.json';
+import base64Map from './assets/base64.js';
 
 export default defineComponent({
   name: 'ComponentName',
   props: {
     name: String,
     size: [Number, String],
+    fill: {
+      type: String,
+      default: 'currentColor',
+    },
   },
   setup(props) {
     const sizeStyle = computed(() => {
@@ -36,7 +40,7 @@ export default defineComponent({
     });
 
     return {
-      base64Json,
+      base64Map,
       sizeStyle,
     };
   },
