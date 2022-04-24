@@ -4,6 +4,7 @@ import { DefineComponent, App } from 'vue';
 interface Props {
   name: 'NameEnums';
   size: number | string;
+  fill?: string;
 }
 
 declare const ComponentName: DefineComponent<Props> & {
@@ -18,6 +19,7 @@ declare module '@vue/runtime-core' {
     ComponentName: DefineComponent<{
       name: 'NameEnums';
       size?: number | string;
+      fill?: string;
     }>;
   }
 }
