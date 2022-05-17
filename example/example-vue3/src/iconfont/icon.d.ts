@@ -2,8 +2,9 @@
 import { DefineComponent, App } from 'vue';
 
 interface Props {
-  name: 'iconfont-iconfontxingxing' | 'iconfont-iconfont5' | 'iconfont-iconfontshouji' | 'iconfont-iconfontphone' | 'iconfont-iconfontqicheyongpin' | 'iconfont-iconfontshipin' | 'iconfont-iconfontgongyichongwu' | 'iconfont-iconfont-shanzi';
-  size: number | string;
+  name: 'iconfont-shenqingdaan' | 'iconfont-shenqingwenti' | 'iconfont-iconfontxingxing' | 'iconfont-iconfont5' | 'iconfont-iconfontshouji' | 'iconfont-iconfontphone' | 'iconfont-iconfontqicheyongpin' | 'iconfont-iconfontshipin' | 'iconfont-iconfontgongyichongwu' | 'iconfont-iconfont-shanzi';
+  size?: number | string;
+  fill?: string;
 }
 
 declare const Iconfont: DefineComponent<Props> & {
@@ -16,8 +17,9 @@ export default Iconfont;
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Iconfont: DefineComponent<{
-      name: 'iconfont-iconfontxingxing' | 'iconfont-iconfont5' | 'iconfont-iconfontshouji' | 'iconfont-iconfontphone' | 'iconfont-iconfontqicheyongpin' | 'iconfont-iconfontshipin' | 'iconfont-iconfontgongyichongwu' | 'iconfont-iconfont-shanzi';
+      name: 'iconfont-shenqingdaan' | 'iconfont-shenqingwenti' | 'iconfont-iconfontxingxing' | 'iconfont-iconfont5' | 'iconfont-iconfontshouji' | 'iconfont-iconfontphone' | 'iconfont-iconfontqicheyongpin' | 'iconfont-iconfontshipin' | 'iconfont-iconfontgongyichongwu' | 'iconfont-iconfont-shanzi';
       size?: number | string;
+      fill?: string;
     }>;
   }
 }

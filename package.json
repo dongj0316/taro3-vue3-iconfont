@@ -1,6 +1,6 @@
 {
   "name": "taro3-vue3-iconfont",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "taro3-vue3-iconfont",
   "main": "index.js",
   "scripts": {
@@ -39,7 +39,6 @@
     "axios": "^0.26.1",
     "fs-extra": "^10.1.0",
     "glob": "^8.0.1",
-    "js-base64": "^3.7.2",
     "tslib": "^2.3.1"
   }
 }

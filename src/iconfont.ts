@@ -81,7 +81,7 @@ if (!userConfig || !userConfig.length) {
         const viewBox = matchViewBox[1];
         let content = matchContent[1];
         // 单色icon移除fill
-        if (content.indexOf('</symbol>') === content.lastIndexOf('</symbol>')) {
+        if (content.indexOf('fill="') === content.lastIndexOf('fill="')) {
           content = content.replace(/\sfill="[^"]+"/, '');
         }
         const clearedSource = source.replace(svgSymbolIdExtraReg, '');
