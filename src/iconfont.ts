@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import path from 'path';
 import fs from 'fs-extra';
 import {
   fetchSymbolSource,
@@ -23,6 +24,10 @@ if (!userConfig || !userConfig.length) {
   const configs = await Promise.all(
     userConfig
       .filter(config => {
+        if (/^\.\//.test(config.url)) {
+          return true;
+        }
+
         try {
           const str = fs.readFileSync(config.symbolSourcePath, 'utf8');
           const url = str.match(/\/\/\s####\s([\s\S]*)\s####/);
@@ -38,7 +43,14 @@ if (!userConfig || !userConfig.length) {
         return true;
       })
       .map(async config => {
-        const source = await fetchSymbolSource(config.url);
+        let source = ''
+
+        if (/^\.\//.test(config.url)) {
+          source = fs.readFileSync(path.resolve(context, config.url), 'utf8')
+        } else {
+          source = await fetchSymbolSource(config.url);
+        }
+
         return {
           ...config,
           source,

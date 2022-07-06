@@ -14,16 +14,16 @@ npm i taro3-vue3-iconfont -D
 ```
 
 # Step2
-去`iconfont`官网获取`symbol`链接
 
-请直接复制[iconfont](http://iconfont.cn)官网提供的项目链接。请务必看清是`.js`后缀而不是.css后缀。如果你现在还没有创建iconfont的仓库，那么可以填入这个链接去测试：`//at.alicdn.com/t/font_3348788_knd7fx1tclm.js`
+方式一：去`iconfont`官网点击`下载至本地`，将其中的`iconfont.js`拷贝到项目中
 
+方式二：去`iconfont`官网获取`symbol`链接，请直接复制[iconfont](http://iconfont.cn)官网提供的项目链接。请务必看清是`.js`后缀而不是.css后缀。如果你现在还没有创建iconfont的仓库，那么可以填入这个链接去测试：`//at.alicdn.com/t/font_3348788_knd7fx1tclm.js`
 ![Image](https://github.com/dongj0316/taro3-vue3-iconfont/blob/main/images/c.png?raw=true)
 
 # Step3
 配置`package.json`
 
-1. 增加`taro3-vue3-iconfont`选项，接收一个数组支持引入多个`iconfont`项目，`url`值为`iconfont symbol`链接，`output`为组件输出目录，`componentName`设置组件名称
+1. 增加`taro3-vue3-iconfont`选项，接收一个数组支持引入多个`iconfont`项目，`url`值为`iconfont.js文件相对路径`或`iconfont symbol`链接，`output`为组件输出目录，`componentName`设置组件名称
 2. 在`build`命令前增加`taro3-vue3-iconfont`
 
 插件会读取配置的`url`在`output`目录下生成相应的图标组件，并在每次启动或者构建前，会根据`url`的变化自动更新
@@ -41,6 +41,11 @@ npm i taro3-vue3-iconfont -D
       "url": "//at.alicdn.com/t/font_3348788_knd7fx1tclm.js",
       "output": "./src/icon",
       "componentName": "Iconfont"
+    },
+    {
+      "url": "./other-iconfont/iconfont.js",
+      "output": "./src/other-iconfont",
+      "componentName": "OtherIconfont"
     }
   ]
 }
