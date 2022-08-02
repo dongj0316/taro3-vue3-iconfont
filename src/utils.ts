@@ -20,7 +20,7 @@ export const getUserConfig = context => {
   )) as PackageJson;
   const config: IconfontConfig[] = packageJson['taro3-vue3-iconfont'].map(
     conf => {
-      const output = path.resolve(context, conf.output);
+      const output = path.resolve(context, conf.output).split(path.sep).join('/');
       const symbolSourcePath = path.resolve(output, 'assets/source.js');
       const base64Path = path.resolve(output, 'assets/base64.js');
       fs.ensureFileSync(symbolSourcePath);
